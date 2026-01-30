@@ -19,7 +19,7 @@ export default async function FamilyPage() {
       families(id, name, invite_code, created_at)
     `)
     .eq('user_id', user.id)
-    .single()
+    .single() as { data: any; error: any }
 
   if (error || !membership?.family_id) {    return <NoFamily />
   }
