@@ -12,8 +12,7 @@ export default async function FamilyPage() {
   }
 
   // Get user's family membership with family details
-  const { data: membership } = await supabase
-    .from('family_members')
+  const { data: membership, error } = await supabase    .from('family_members')
     .select(`
       family_id,
       role,
@@ -22,8 +21,7 @@ export default async function FamilyPage() {
     .eq('user_id', user.id)
     .single()
 
-  if (!membership?.family_id) {
-    return <NoFamily />
+  if (error || !membership?.family_id) {    return <NoFamily />
   }
 
   // Get all family members with their profiles
