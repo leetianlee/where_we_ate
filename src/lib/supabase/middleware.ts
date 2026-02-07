@@ -66,7 +66,7 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(new URL('/auth/login', request.url))
   }
 
-  if (user && isAuthRoute && !request.nextUrl.pathname.includes('/callback')) {
+  if (user && isAuthRoute && !request.nextUrl.pathname.includes('/callback') && !request.nextUrl.pathname.includes('/error')) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
